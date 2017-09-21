@@ -19,8 +19,9 @@ public class DataFinder {
         List<String> resultList = new ArrayList<String>();
         Elements elements = pageDoc.select("div.yt-lockup-content");
         for (int i = 0; i < elements.size(); i++) {
-            resultList.add("https://www.youtube.com" + elements.get(i).select("h3.yt-lockup-title").select("a[href]").first().attr("href"));
-
+            if (elements.get(i).select("h3.yt-lockup-title").select("a[href]").first().attr("href").startsWith("/")) {
+                resultList.add("https://www.youtube.com" + elements.get(i).select("h3.yt-lockup-title").select("a[href]").first().attr("href"));
+            }
         }
         return resultList;
     }
@@ -28,9 +29,12 @@ public class DataFinder {
     public List<String> findNames(Document pageDoc) {
         List<String> resultList = new ArrayList<String>();
         Elements elements = pageDoc.select("div.yt-lockup-content");
-        for (int i = 0; i < elements.size(); i++) {
-            resultList.add(elements.get(i).select("h3.yt-lockup-title").select("a[href]").first().attr("title"));
+        while(elements.size() > 20){
+            elements.remove(0);
         }
+            for (int i = 0; i < elements.size(); i++) {
+                resultList.add(elements.get(i).select("h3.yt-lockup-title").select("a[href]").first().attr("title"));
+            }
         return resultList;
     }
 

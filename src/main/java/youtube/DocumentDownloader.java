@@ -18,8 +18,7 @@ public class DocumentDownloader {
  
     // Method to download Document form web site specified as link pageUrl
     public Document getPageDocument(String pageUrl) throws IOException {
-//        Connection connect = Jsoup.connect(pageUrl);
-        Connection connect = Jsoup.connect("https://www.youtube.com/results?search_query=jsoup+java+tutorial");
+        Connection connect = Jsoup.connect(pageUrl);
         return connect.get();
     }
 }

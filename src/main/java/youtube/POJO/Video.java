@@ -11,12 +11,12 @@ public class Video {
     private String name;
     private String authorName;
     private String authorLink;
-    private double lenght;
+    private double length;
     private int views;
     private int likes;
     private int dislikes;
-    private int komments;
-    private List<String> topCommants;
+    private int comments;
+    private List<Comment> bestCommants;
 
     public String getVideoLink() {
         return videoLink;
@@ -51,11 +51,11 @@ public class Video {
     }
 
     public double getLenght() {
-        return lenght;
+        return length;
     }
 
     public void setLenght(double lenght) {
-        this.lenght = lenght;
+        this.length = lenght;
     }
 
     public int getViews() {
@@ -82,20 +82,20 @@ public class Video {
         this.dislikes = dislikes;
     }
 
-    public int getKomments() {
-        return komments;
+    public int getComments() {
+        return comments;
     }
 
-    public void setKomments(int komments) {
-        this.komments = komments;
+    public void setComments(int komments) {
+        this.comments = komments;
     }
 
-    public List<String> getTopCommants() {
-        return topCommants;
+    public List<Comment> getTopCommants() {
+        return bestCommants;
     }
 
-    public void setTopCommants(List<String> topCommants) {
-        this.topCommants = topCommants;
+    public void setTopCommants(List<Comment> topCommants) {
+        this.bestCommants = topCommants;
     }
 
     

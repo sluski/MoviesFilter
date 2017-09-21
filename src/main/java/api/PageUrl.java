@@ -1,15 +1,12 @@
 package api;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import youtube.POJO.Video;
 import youtube.VideosFilter;
@@ -38,6 +35,6 @@ public class PageUrl {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Video> getJson() throws IOException {
         videosFilter = new VideosFilter();
-        return videosFilter.getVideos("https://www.youtube.com/results?search_query=+Create+Java+client+for+RESTful+web+service");
+        return videosFilter.getVideos("https://www.youtube.com/results?search_query=test");
     }
 }
