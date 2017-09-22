@@ -11,6 +11,7 @@ public class Video {
     private String name;
     private String authorName;
     private String authorLink;
+    private int authorSubscirbers;
     private double length;
     private int views;
     private int likes;
@@ -96,6 +97,14 @@ public class Video {
 
     public void setTopCommants(List<Comment> topCommants) {
         this.bestCommants = topCommants;
+    }
+
+    public int getAuthorSubscirbers() {
+        return authorSubscirbers;
+    }
+
+    public void setAuthorSubscirbers(int authorSubscirbers) {
+        this.authorSubscirbers = authorSubscirbers;
     }
 
     

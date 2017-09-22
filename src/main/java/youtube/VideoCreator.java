@@ -11,14 +11,14 @@ import org.jsoup.nodes.Document;
  *
  * @author Sluski
  */
-public class VideosFilter {
+public class VideoCreator {
 
     private DocumentDownloader docDownloader;
     private DataFinder dataFinder;
     private List<Video> videos;
     private SingleDataFinder singleDataFinder;
 
-    public VideosFilter() throws IOException {
+    public VideoCreator() throws IOException {
         videos = new ArrayList<Video>();
         docDownloader = new DocumentDownloader();
         dataFinder = new DataFinder();

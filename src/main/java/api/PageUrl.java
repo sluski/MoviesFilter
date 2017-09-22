@@ -9,7 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import youtube.POJO.Video;
-import youtube.VideosFilter;
+import youtube.VideoCreator;
 
 /**
  * REST Web Service
@@ -19,7 +19,7 @@ import youtube.VideosFilter;
 @Path("videos")
 public class PageUrl {
     private String path;
-    private VideosFilter videosFilter;
+    private VideoCreator videosFilter;
 
     @Context
     private UriInfo context;
@@ -34,7 +34,7 @@ public class PageUrl {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Video> getJson() throws IOException {
-        videosFilter = new VideosFilter();
+        videosFilter = new VideoCreator();
         return videosFilter.getVideos("https://www.youtube.com/results?search_query=test");
     }
 }
