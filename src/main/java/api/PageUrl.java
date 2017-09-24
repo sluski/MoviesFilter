@@ -35,6 +35,6 @@ public class PageUrl {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Video> getJson() throws IOException {
         videosFilter = new VideoCreator();
-        return videosFilter.getVideos("https://www.youtube.com/results?search_query=test");
+        return videosFilter.getVideos("https://www.youtube.com/results?search_query=onerepublic");
     }
 }

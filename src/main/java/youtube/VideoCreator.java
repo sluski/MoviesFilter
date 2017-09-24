@@ -27,6 +27,11 @@ public class VideoCreator {
 
     public List<Video> getVideos(String pageUrl) throws IOException {
         createVideos(pageUrl);
+        for(int i = 0; i < videos.size(); i++){
+            if(videos.get(i).getLikes() == videos.get(i).getDislikes() - 1){
+                videos.remove(i);
+            }
+        }
         return videos;
     }
 
@@ -37,13 +42,12 @@ public class VideoCreator {
     // Main method to create list videos with all veriables
     public void createVideos(String pageUrl) throws IOException {
         Document page = docDownloader.getPageDocument(pageUrl);
-        List<String> links = dataFinder.findLinks(page);
-        List<String> names = dataFinder.findNames(page);
+        List<Video> namesAndLinks = dataFinder.findLinksAndNames(page);
 
-        for (int i = 0; i < links.size(); i++) {
-           Video video_temp = singleDataFinder.findVideoDetail(links.get(i));
-           video_temp.setVideoLink(links.get(i));
-           video_temp.setName(names.get(i));
+        for (int i = 0; i < namesAndLinks.size(); i++) {
+           Video video_temp = singleDataFinder.findVideoDetail((namesAndLinks.get(i).getVideoLink()));
+           video_temp.setVideoLink(namesAndLinks.get(i).getVideoLink());
+           video_temp.setName(namesAndLinks.get(i).getName());
            videos.add(video_temp);
         }
     }

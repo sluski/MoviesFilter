@@ -1,7 +1,6 @@
 package youtube;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import org.jsoup.nodes.Document;
 import youtube.POJO.Comment;
@@ -28,62 +27,56 @@ public class SingleDataFinder {
         Document page = docDownloader.getPageDocument(videoUrl);
         Video video = new Video();
         video.setLikes(findLikes(page));
-        video.setDislikes(findDislikes(videoUrl));
+        video.setDislikes(findDislikes(page));
         video.setViews(findViews(page));
-        video.setComments(findCommetsNumber(videoUrl));
-        video.setTopCommants(findBestComments(videoUrl));
-        video.setAuthorLink(findAuthorLink(videoUrl));
-        video.setAuthorName(findAuthorName(videoUrl));
+        video.setComments(findCommetsNumber(page));
+        video.setTopCommants(findBestComments(page));
+        video.setAuthorLink(findAuthorLink(page));
+        video.setAuthorName(findAuthorName(page));
         return video;
     }
 
     private int findLikes(Document page) throws IOException {
-        Integer result = 0;
         String resultString = page.select("span.like-button-renderer ").select("span.yt-uix-clickcard").select("span.yt-uix-button-content").first().text();
-        List test = new ArrayList();
-        char[] resultTable = new char[result];
-        for (int i = 0; i < resultString.length(); i++) {
-            resultTable = resultString.toCharArray();
-        }
-        for (int j = 0; j < resultTable.length; j++) {
-            if(resultTable[j] != ' ') test.add(resultTable[j]);
-        }
-        result = Integer.parseInt(test.toString());
+        int result = Integer.parseInt(resultString.replaceAll("[^0-9.]", ""));
         return result;
     }
 
-    private int findDislikes(String videoUrl) throws IOException {
+    private int findDislikes(Document page) throws IOException {
+        String resultString = page.getElementsByAttributeValue("data-position", "bottomright").get(2).text();
+        int result = Integer.parseInt(resultString.replaceAll("[^0-9.]", ""));
+        return result;
+    }
+
+    private int findCommetsNumber(Document page) throws IOException {
 
         return 0;
     }
 
-    private int findCommetsNumber(String videoUrl) throws IOException {
-
-        return 0;
-    }
-
-    private List<Comment> findBestComments(String videoUrl) throws IOException {
+    private List<Comment> findBestComments(Document page) throws IOException {
 
         return null;
     }
 
-    private double findLength(String videoUrl) throws IOException {
+    private double findLength(Document page) throws IOException {
 
         return 0;
     }
 
     private int findViews(Document page) throws IOException {
-        String result = page.select("div#watch7-views-info").select("div.watch-view-count").text();
+        String resultString = page.select("div#watch7-views-info").select("div.watch-view-count").text();
+        int result =  Integer.parseInt(resultString.replaceAll("[^0-9.]", ""));
         return result;
     }
 
-    private String findAuthorName(String videoUrl) throws IOException {
-
-        return null;
+    private String findAuthorName(Document page) throws IOException {
+        String result = page.select("div.yt-user-info").select("a").text();
+        return result;
     }
 
-    private String findAuthorLink(String videoUrl) throws IOException {
-
-        return null;
+    private String findAuthorLink(Document page) throws IOException {
+        String result = page.select("div.yt-user-info").select("a").attr("href");
+        return "https://www.youtube.com" + result;
     }
+    
 }
