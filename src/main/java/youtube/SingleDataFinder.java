@@ -1,6 +1,7 @@
 package youtube;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import org.jsoup.nodes.Document;
 import youtube.POJO.Comment;
@@ -29,8 +30,6 @@ public class SingleDataFinder {
         video.setLikes(findLikes(page));
         video.setDislikes(findDislikes(page));
         video.setViews(findViews(page));
-        video.setComments(findCommetsNumber(page));
-        video.setTopCommants(findBestComments(page));
         video.setAuthorLink(findAuthorLink(page));
         video.setAuthorName(findAuthorName(page));
         return video;
@@ -46,16 +45,6 @@ public class SingleDataFinder {
         String resultString = page.getElementsByAttributeValue("data-position", "bottomright").get(2).text();
         int result = Integer.parseInt(resultString.replaceAll("[^0-9.]", ""));
         return result;
-    }
-
-    private int findCommetsNumber(Document page) throws IOException {
-
-        return 0;
-    }
-
-    private List<Comment> findBestComments(Document page) throws IOException {
-
-        return null;
     }
 
     private double findLength(Document page) throws IOException {

@@ -1,6 +1,5 @@
 package youtube.POJO;
 
-import java.util.List;
 
 /**
  *
@@ -11,12 +10,9 @@ public class Video {
     private String name;
     private String authorName;
     private String authorLink;
-    private double length;
     private int views;
     private int likes;
     private int dislikes;
-    private int comments;
-    private List<Comment> bestCommants;
 
     public String getVideoLink() {
         return videoLink;
@@ -50,14 +46,6 @@ public class Video {
         this.authorLink = authorLink;
     }
 
-    public double getLenght() {
-        return length;
-    }
-
-    public void setLenght(double lenght) {
-        this.length = lenght;
-    }
-
     public int getViews() {
         return views;
     }
@@ -80,21 +68,5 @@ public class Video {
 
     public void setDislikes(int dislikes) {
         this.dislikes = dislikes;
-    }
-
-    public int getComments() {
-        return comments;
-    }
-
-    public void setComments(int komments) {
-        this.comments = komments;
-    }
-
-    public List<Comment> getTopCommants() {
-        return bestCommants;
-    }
-
-    public void setTopCommants(List<Comment> topCommants) {
-        this.bestCommants = topCommants;
     }
 }

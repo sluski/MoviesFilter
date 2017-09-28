@@ -13,10 +13,10 @@ import org.jsoup.nodes.Document;
  */
 public class VideoCreator {
 
-    private DocumentDownloader docDownloader;
-    private DataFinder dataFinder;
+    private final DocumentDownloader docDownloader;
+    private final DataFinder dataFinder;
     private List<Video> videos;
-    private SingleDataFinder singleDataFinder;
+    private final SingleDataFinder singleDataFinder;
 
     public VideoCreator() throws IOException {
         videos = new ArrayList<Video>();
